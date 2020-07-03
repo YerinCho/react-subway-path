@@ -11,8 +11,12 @@ const Search = props => {
   const [durationPath, setDurationPath] = useState(null);
 
   const search = (departure, arrival) => {
-    searchPath(departure,arrival,PATH_TYPE.DISTANCE);
-    searchPath(departure,arrival,PATH_TYPE.DURATION);
+    if (departure.length === 0 || arrival.length === 0) {
+      window.alert(ERROR_MESSAGE.NOT_EMPTY);
+    } else {
+      searchPath(departure, arrival, PATH_TYPE.DISTANCE);
+      searchPath(departure, arrival, PATH_TYPE.DURATION);
+    }
   }
 
   const searchPath = (departure, arrival, type) => {
