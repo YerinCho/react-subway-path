@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ResultPath from "./ResultPath";
+import Favorite from "./Favorite";
 
 const Result = ({distancePath, durationPath}) => {
   const [path, setPath] = useState(distancePath);
@@ -18,11 +19,7 @@ const Result = ({distancePath, durationPath}) => {
   return (
     <div id="search-result-container"
          className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg p-6 relative border top">
-      <button
-        id="favorite-button"
-        className="favorite-button bg-yellow-500 mdi mdi-star-outline absolute text-white bg-transparent d-inline-block font-semibold py-2 px-3 hover:border-transparent rounded-full z-10"
-      >
-      </button>
+      <Favorite/>
       <ul className="flex border-b w-full">
         <li id="shortest-distance-tab" className={`-mb-px w-2/4 ${type === "DISTANCE" ? "active-tab" : ""} tab-menu`}
             onClick={changePath}>
