@@ -4,26 +4,21 @@ import "../assets/service/css/search.css";
 import Input from "./Input";
 import Result from "./Result";
 import axios from 'axios';
-import {ERROR_MESSAGE} from "../utils/constants";
+import {ERROR_MESSAGE, PATH_TYPE} from "../utils/constants";
 
 const Search = props => {
   const [distancePath, setDistancePath] = useState(null);
   const [durationPath, setDurationPath] = useState(null);
 
   const search = (departure, arrival) => {
-    searchDistancePath(departure, arrival);
-    searchDurationPath(departure, arrival);
+    searchPath(departure,arrival,PATH_TYPE.DISTANCE);
+    searchPath(departure,arrival,PATH_TYPE.DURATION);
   }
 
-  const searchDistancePath = (departure, arrival) => {
-    axios.get(`/paths?source=${departure}&target=${arrival}&type=DISTANCE`)
-      .then(response => setDistancePath(response.data))
-      .catch(() => window.alert(`출발역: ${departure}, 도착역: ${arrival}\n${ERROR_MESSAGE.COMMON}`));
-  }
-
-  const searchDurationPath = (departure, arrival) => {
-    axios.get(`/paths?source=${departure}&target=${arrival}&type=DURATION`)
-      .then(response => setDurationPath(response.data))
+  const searchPath = (departure, arrival, type) => {
+    axios.get(`/paths?source=${departure}&target=${arrival}&type=${type}`)
+      .then(response =>
+        type === PATH_TYPE.DISTANCE ? setDistancePath(response.data) : setDurationPath(response.data))
       .catch(() => window.alert(`출발역: ${departure}, 도착역: ${arrival}\n${ERROR_MESSAGE.COMMON}`));
   }
 

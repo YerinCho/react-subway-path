@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {PATH_TYPE} from "../utils/constants";
 
 const Input = ({search}) => {
 
@@ -42,7 +43,7 @@ const Input = ({search}) => {
       </div>
       <button type="button" id="search-button"
               className="w-full text-sm bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 font-bold py-2 px-4 rounded-sm"
-              onClick={() => search(departureStation, arrivalStation, "DISTANCE")}>
+              onClick={() => search(departureStation, arrivalStation)}>
         검색
       </button>
     </form>
