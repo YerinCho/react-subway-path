@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {PATH_TYPE} from "../utils/constants";
+import InputStation from "./InputStation";
 
 const Input = ({search}) => {
   const [departureStation, setDepartureStation] = useState("");
@@ -17,26 +17,20 @@ const Input = ({search}) => {
     <form className="bg-white mb-4">
       <div className="flex flex-wrap mb-3">
         <div className="w-5/12 h-12 text-center text-gray-800">
-          <input
-            className="appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
-            id="departure-station-name"
-            type="text"
-            value={departureStation}
-            placeholder="출발역"
-            onChange={handleChangeDeparture}
+          <InputStation
+            station={departureStation}
+            type={"출발역"}
+            handleChange={handleChangeDeparture}
           />
         </div>
         <div className="w-2/12 h-12 text-center text-gray-800 flex justify-center items-center">
           <span className="mdi mdi-arrow-right-thick relative bottom-6px text-lg"/>
         </div>
         <div className="w-5/12 h-12 text-center text-gray-800">
-          <input
-            className="appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
-            id="arrival-station-name"
-            type="text"
-            value={arrivalStation}
-            placeholder="도착역"
-            onChange={handleChangeArrival}
+          <InputStation
+            station={arrivalStation}
+            type={"도착역"}
+            handleChange={handleChangeArrival}
           />
         </div>
       </div>
