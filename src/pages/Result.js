@@ -1,9 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ResultPath from "./ResultPath";
 
 const Result = ({distancePath, durationPath}) => {
   const [path, setPath] = useState(distancePath);
   const [type, setType] = useState("DISTANCE");
+
+  useEffect(() => {
+    setPath(distancePath);
+    setType("DISTANCE");
+  }, [distancePath]);
 
   const changePath= () => {
     setPath(type === "DISTANCE" ? durationPath : distancePath);

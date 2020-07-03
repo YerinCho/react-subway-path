@@ -13,7 +13,6 @@ const Input = ({search}) => {
     setArrivalStation(e.target.value);
   }
 
-
   return (
     <form className="bg-white mb-4">
       <div className="flex flex-wrap mb-3">
