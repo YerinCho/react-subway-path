@@ -17,7 +17,6 @@ const ResultPath = ({path}) => {
     );
   });
 
-
   return (
     <div>
       <div className="px-2 py-4 border-b">

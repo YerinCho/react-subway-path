@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {PATH_TYPE} from "../utils/constants";
 
 const Input = ({search}) => {
-
   const [departureStation, setDepartureStation] = useState("");
   const [arrivalStation, setArrivalStation] = useState("");
 

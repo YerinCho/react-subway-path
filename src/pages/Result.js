@@ -12,9 +12,11 @@ const Result = ({distancePath, durationPath}) => {
     setType(PATH_TYPE.DISTANCE);
   }, [distancePath]);
 
-  const changePath= () => {
-    setPath(type === PATH_TYPE.DISTANCE ? durationPath : distancePath);
-    setType(type === PATH_TYPE.DISTANCE ? PATH_TYPE.DURATION : PATH_TYPE.DISTANCE);
+  const changePath = clickedType => {
+    if (clickedType !== type) {
+      setPath(type === PATH_TYPE.DISTANCE ? durationPath : distancePath);
+      setType(type === PATH_TYPE.DISTANCE ? PATH_TYPE.DURATION : PATH_TYPE.DISTANCE);
+    }
   }
 
   return (
@@ -22,12 +24,13 @@ const Result = ({distancePath, durationPath}) => {
          className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg p-6 relative border top">
       <Favorite/>
       <ul className="flex border-b w-full">
-        <li id="shortest-distance-tab" className={`-mb-px w-2/4 ${type === PATH_TYPE.DISTANCE ? "active-tab" : ""} tab-menu`}
-            onClick={changePath}>
+        <li id="shortest-distance-tab"
+            className={`-mb-px w-2/4 ${type === PATH_TYPE.DISTANCE ? "active-tab" : ""} tab-menu`}
+            onClick={() => changePath(PATH_TYPE.DISTANCE)}>
           <a className="w-full text-center inline-block py-2 px-4 font-semibold" href="#">최단거리</a>
         </li>
         <li id="minimum-time-tab" className={`-mb-px w-2/4 ${type === PATH_TYPE.DURATION ? "active-tab" : ""} tab-menu`}
-            onClick={changePath}>
+            onClick={() => changePath(PATH_TYPE.DURATION)}>
           <a className="w-full text-center bg-white inline-block py-2 px-4 font-semibold" href="#">최소시간</a>
         </li>
       </ul>

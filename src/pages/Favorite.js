@@ -6,6 +6,7 @@ const Favorite = () => {
   const changeFavorite = () => {
     setFavorite(!favorite);
   }
+
   return (
     <button
       id="favorite-button"
