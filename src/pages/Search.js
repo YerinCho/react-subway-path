@@ -7,15 +7,28 @@ import axios from 'axios';
 import {ERROR_MESSAGE} from "../utils/constants";
 
 const Search = props => {
-  const [path, setPath] = useState(null);
+  const [distancePath, setDistancePath] = useState(null);
+  const [durationPath, setDurationPath] = useState(null);
+
   const search = async (departure, arrival) => {
     try {
-      const response = await axios.get(`/paths?source=${departure}&target=${arrival}&type=DISTANCE`);
-      setPath(response.data);
+      await searchDistancePath(departure, arrival);
+      await searchDurationPath(departure, arrival);
     } catch (e) {
       window.alert(`출발역: ${departure}, 도착역: ${arrival}\n${ERROR_MESSAGE.COMMON}`);
     }
   }
+
+  const searchDistancePath = async (departure, arrival) => {
+    const response = await axios.get(`/paths?source=${departure}&target=${arrival}&type=DISTANCE`);
+    setDistancePath(response.data);
+  }
+
+  const searchDurationPath = async (departure, arrival) => {
+    const response = await axios.get(`/paths?source=${departure}&target=${arrival}&type=DURATION`);
+    setDurationPath(response.data);
+  }
+
   return (
     <div>
       <div className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg px-6 pt-6 pb-2">
@@ -23,8 +36,10 @@ const Search = props => {
         <Input
           search={search}/>
       </div>
-      {path == null
-        ? <></> : <Result path={path}/>}
+      {distancePath == null || durationPath == null
+        ? <></> : <Result distancePath={distancePath}
+                          durationPath={distancePath}
+        />}
     </div>
   );
 }
