@@ -1,7 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-const Favorite = () => {
-  const [favorite, setFavorite] = useState(false);
+const Favorite = ({isFavorite, departure, arrival}) => {
+  const [favorite, setFavorite] = useState(isFavorite);
+
+  useEffect(() => {
+    setFavorite(isFavorite);
+  },[departure])
+
+  useEffect(() => {
+    setFavorite(isFavorite);
+  },[arrival])
 
   const changeFavorite = () => {
     setFavorite(!favorite);

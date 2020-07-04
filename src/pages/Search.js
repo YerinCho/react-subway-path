@@ -9,6 +9,8 @@ import {ERROR_MESSAGE, PATH_TYPE} from "../utils/constants";
 const Search = props => {
   const [distancePath, setDistancePath] = useState(null);
   const [durationPath, setDurationPath] = useState(null);
+  const [departure, setDeparture] = useState(null);
+  const [arrival, setArrival] = useState(null);
 
   const search = (departure, arrival) => {
     if (departure.length === 0 || arrival.length === 0) {
@@ -16,6 +18,8 @@ const Search = props => {
     } else {
       searchPath(departure, arrival, PATH_TYPE.DISTANCE);
       searchPath(departure, arrival, PATH_TYPE.DURATION);
+      setDeparture(departure);
+      setArrival(arrival);
     }
   }
 
@@ -36,6 +40,8 @@ const Search = props => {
       {(distancePath == null || durationPath == null) ? <></> :
         <Result distancePath={distancePath}
                 durationPath={durationPath}
+                departure = {departure}
+                arrival = {arrival}
         />}
     </div>
   );

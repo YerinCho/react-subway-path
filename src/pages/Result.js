@@ -3,7 +3,7 @@ import ResultPath from "./ResultPath";
 import Favorite from "./Favorite";
 import {PATH_TYPE} from "../utils/constants";
 
-const Result = ({distancePath, durationPath}) => {
+const Result = ({distancePath, durationPath, departure, arrival}) => {
   const [path, setPath] = useState(distancePath);
   const [type, setType] = useState(PATH_TYPE.DISTANCE);
 
@@ -22,7 +22,10 @@ const Result = ({distancePath, durationPath}) => {
   return (
     <div id="search-result-container"
          className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg p-6 relative border top">
-      <Favorite/>
+      <Favorite
+        isFavorite={false}
+        departure={departure}
+        arrival = {arrival}/>
       <ul className="flex border-b w-full">
         <li id="shortest-distance-tab"
             className={`-mb-px w-2/4 ${type === PATH_TYPE.DISTANCE ? "active-tab" : ""} tab-menu`}
